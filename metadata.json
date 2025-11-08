@@ -1,0 +1,5 @@
+{
+  "name": "AI Image Creator",
+  "description": "An application to generate and extend image from an initial image and text prompts using AI. ",
+  "requestFramePermissions": []
+}

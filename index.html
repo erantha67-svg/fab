@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-primary: #030712; /* almost black */
+        --bg-secondary: #111827; /* dark blue-gray */
+        --bg-tertiary: #1f2937; /* medium blue-gray */
+        --text-primary: #f9fafb; /* off-white */
+        --text-secondary: #9ca3af; /* gray */
+        --accent: #22d3ee; /* cyan */
+        --accent-hover: #67e8f9;
+        --border-color: #374151;
+        --error: #f87171;
+        --error-bg: rgba(248, 113, 113, 0.1);
+        --error-border: rgba(248, 113, 113, 0.3);
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior-y: contain;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+      .accent-glow {
+        box-shadow: 0 0 15px 0px rgba(34, 211, 238, 0.4);
+      }
+      /* Custom scrollbar for webkit browsers */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-secondary);
+      }
+
+      /* Custom range input styles */
+      input[type=range].custom-range {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+        background: var(--bg-tertiary);
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      input[type=range].custom-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: var(--accent);
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid var(--bg-secondary);
+      }
+
+      input[type=range].custom-range::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background: var(--accent);
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid var(--bg-secondary);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
