@@ -1,6 +1,8 @@
 // For ImageEnhancer
 export interface ManualAdjustments {
-    brightness: number;
+    exposure: number;
+    highlights: number;
+    shadows: number;
     contrast: number;
     saturate: number;
     sepia: number;

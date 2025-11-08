@@ -12,9 +12,11 @@ const ExportIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 
 const ExtendIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4h4m12 4V4h-4M4 16v4h4m12-4v4h-4" /></svg>;
 const HistoryIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 const SuggestIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586zM12 6a1 1 0 100-2 1 1 0 000 2zM12 18a1 1 0 100-2 1 1 0 000 2zM6 12a1 1 0 10-2 0 1 1 0 002 0zM18 12a1 1 0 10-2 0 1 1 0 002 0z" /></svg>;
+const UndoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" /></svg>;
+const RedoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 15l3-3m0 0l-3-3m3 3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 
 // A sample image for preset previews, base64 encoded to avoid external assets.
-const SAMPLE_PRESET_IMAGE_URL = 'data:image/jpeg;base64,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';
+const SAMPLE_PRESET_IMAGE_URL = 'data:image/jpeg;base64,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';
 
 interface ImageEnhancerProps {
     onApiError: (error: unknown) => void;
@@ -24,7 +26,7 @@ interface ImageEnhancerProps {
     onSendToTool: (targetMode: 'portrait' | 'filter', imageDataUrl: string) => void;
 }
 
-export const defaultAdjustments: ManualAdjustments = { brightness: 100, contrast: 100, saturate: 100, sepia: 0, grayscale: 0, blur: 0, hueRotate: 0, invert: 0 };
+export const defaultAdjustments: ManualAdjustments = { exposure: 0, highlights: 0, shadows: 0, contrast: 100, saturate: 100, sepia: 0, grayscale: 0, blur: 0, hueRotate: 0, invert: 0 };
 
 const presetCategories = {
     'Enhancements': [
@@ -40,7 +42,9 @@ const presetCategories = {
 };
 
 const adjustmentControls = [
-    { name: 'brightness', label: 'Brightness', min: 0, max: 200, unit: '%' },
+    { name: 'exposure', label: 'Exposure', min: -100, max: 100, unit: '' },
+    { name: 'highlights', label: 'Highlights', min: -100, max: 100, unit: '' },
+    { name: 'shadows', label: 'Shadows', min: -100, max: 100, unit: '' },
     { name: 'contrast', label: 'Contrast', min: 0, max: 200, unit: '%' },
     { name: 'saturate', label: 'Saturation', min: 0, max: 200, unit: '%' },
     { name: 'sepia', label: 'Sepia', min: 0, max: 100, unit: '%' },
@@ -73,6 +77,10 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
     // History state
     const [history, setHistory] = useState<HistoryEntry[]>([]);
     const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1);
+    
+    // Adjustment Undo/Redo state
+    const [adjustmentHistory, setAdjustmentHistory] = useState<ManualAdjustments[]>([defaultAdjustments]);
+    const [currentAdjustmentHistoryIndex, setCurrentAdjustmentHistoryIndex] = useState(0);
 
     // Prompt suggestions state
     const [promptSuggestions, setPromptSuggestions] = useState<string[]>([]);
@@ -82,30 +90,6 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
     const isBatchMode = batchFiles.length > 0;
     const totalImageCount = 1 + batchFiles.length;
     
-    // Effect to handle snapshotting adjustments after user interaction
-    useEffect(() => {
-        const adjustmentNode = adjustmentsRef.current;
-        const handleInteractionEnd = () => {
-            if (currentHistoryIndex < 0 || !history[currentHistoryIndex]) return;
-            const lastHistoryState = history[currentHistoryIndex].state;
-            // Only add a history step if adjustments have actually changed
-            if (JSON.stringify(lastHistoryState.adjustments) !== JSON.stringify(state.adjustments)) {
-                addHistoryEntry('Adjustments', state);
-            }
-        };
-        if (adjustmentNode) {
-            adjustmentNode.addEventListener('mouseup', handleInteractionEnd);
-            adjustmentNode.addEventListener('touchend', handleInteractionEnd);
-        }
-        return () => {
-            if (adjustmentNode) {
-                adjustmentNode.removeEventListener('mouseup', handleInteractionEnd);
-                adjustmentNode.removeEventListener('touchend', handleInteractionEnd);
-            }
-        };
-    }, [state, history, currentHistoryIndex]);
-
-
     useEffect(() => {
         let objectUrl: string | null = null;
         if (imageFile) {
@@ -127,8 +111,12 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
     
     const handleRevertToHistory = (index: number) => {
         if (index >= 0 && index < history.length) {
-            setState(history[index].state);
+            const revertedState = history[index].state;
+            setState(revertedState);
             setCurrentHistoryIndex(index);
+            // Reset adjustment history to the reverted state
+            setAdjustmentHistory([revertedState.adjustments]);
+            setCurrentAdjustmentHistoryIndex(0);
         }
     };
 
@@ -152,6 +140,9 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
             // Initialize history
             setHistory([{ name: 'Initial State', state: initialState, id: Date.now() }]);
             setCurrentHistoryIndex(0);
+             // Initialize adjustment history
+            setAdjustmentHistory([defaultAdjustments]);
+            setCurrentAdjustmentHistoryIndex(0);
         }
     };
 
@@ -186,6 +177,10 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
             };
             setState(newState);
             addHistoryEntry(preset ? `Preset: ${preset.name}` : 'AI Prompt', newState);
+
+            // Reset adjustment history after an AI operation
+            setAdjustmentHistory([defaultAdjustments]);
+            setCurrentAdjustmentHistoryIndex(0);
 
         } catch (e) { onApiError(e); } finally { setIsLoading(false); }
     };
@@ -223,6 +218,10 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
             };
             setState(newState);
             addHistoryEntry('Image Extended', newState);
+
+            // Reset adjustment history after an AI operation
+            setAdjustmentHistory([defaultAdjustments]);
+            setCurrentAdjustmentHistoryIndex(0);
 
         } catch (e) { onApiError(e); } finally { setIsLoading(false); }
     };
@@ -382,6 +381,9 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
         setBatchFiles([]);
         setHistory([]);
         setCurrentHistoryIndex(-1);
+        // Reset adjustment history
+        setAdjustmentHistory([defaultAdjustments]);
+        setCurrentAdjustmentHistoryIndex(0);
         if (fileInputRef.current) fileInputRef.current.value = "";
         clearError();
     };
@@ -413,13 +415,60 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
         }
     };
     
+    const handleAdjustmentEnd = () => {
+        const lastSavedAdjustments = adjustmentHistory[currentAdjustmentHistoryIndex];
+        if (JSON.stringify(lastSavedAdjustments) !== JSON.stringify(adjustments)) {
+            const newHistory = adjustmentHistory.slice(0, currentAdjustmentHistoryIndex + 1);
+            newHistory.push(adjustments);
+            setAdjustmentHistory(newHistory);
+            setCurrentAdjustmentHistoryIndex(newHistory.length - 1);
+        }
+    };
+
+    const handleUndo = () => {
+        if (currentAdjustmentHistoryIndex > 0) {
+            const newIndex = currentAdjustmentHistoryIndex - 1;
+            setState(prev => ({ ...prev, adjustments: adjustmentHistory[newIndex] }));
+            setCurrentAdjustmentHistoryIndex(newIndex);
+        }
+    };
+    
+    const handleRedo = () => {
+        if (currentAdjustmentHistoryIndex < adjustmentHistory.length - 1) {
+            const newIndex = currentAdjustmentHistoryIndex + 1;
+            setState(prev => ({ ...prev, adjustments: adjustmentHistory[newIndex] }));
+            setCurrentAdjustmentHistoryIndex(newIndex);
+        }
+    };
+
     const generateFilterStyle = (): React.CSSProperties => {
-        const { brightness, contrast, saturate, sepia, grayscale, blur, hueRotate, invert } = adjustments;
-        const filters = [`brightness(${brightness}%)`, `contrast(${contrast}%)`, `saturate(${saturate}%)`, `sepia(${sepia}%)`, `grayscale(${grayscale}%)`, `blur(${blur}px)`, `hue-rotate(${hueRotate}deg)`, `invert(${invert}%)`];
+        const { exposure, highlights, shadows, contrast, saturate, sepia, grayscale, blur, hueRotate, invert } = adjustments;
+        
+        // A simple approximation for highlights and shadows using brightness and contrast
+        const finalBrightness = 100 + exposure + (highlights / 2) + (shadows / 2);
+        const finalContrast = contrast + (highlights / 2) - (shadows / 2);
+
+        const filters = [
+            `brightness(${Math.max(0, finalBrightness)}%)`, 
+            `contrast(${Math.max(0, finalContrast)}%)`, 
+            `saturate(${saturate}%)`, 
+            `sepia(${sepia}%)`, 
+            `grayscale(${grayscale}%)`, 
+            `blur(${blur}px)`, 
+            `hue-rotate(${hueRotate}deg)`, 
+            `invert(${invert}%)`
+        ];
         return { filter: filters.join(' ') };
     };
 
     const toggleTool = (tool: 'presets' | 'prompt' | 'adjust' | 'export' | 'extend' | 'history') => {
+        // When closing the adjust tool, snapshot the final adjustments to the main history if they changed.
+        if (activeTool === 'adjust' && tool !== 'adjust') {
+            const lastMajorHistoryState = history[currentHistoryIndex]?.state;
+            if (lastMajorHistoryState && JSON.stringify(lastMajorHistoryState.adjustments) !== JSON.stringify(state.adjustments)) {
+                addHistoryEntry('Adjustments', state);
+            }
+        }
         setActiveTool(activeTool === tool ? null : tool);
         setPromptSuggestions([]);
     };
@@ -527,13 +576,41 @@ const ImageEnhancer: React.FC<ImageEnhancerProps> = ({ onApiError, clearError, s
                         </div>
                     )}
                     {activeTool === 'adjust' && (
-                        <div ref={adjustmentsRef} className="grid grid-cols-2 gap-x-4 gap-y-3 max-h-48 overflow-y-auto">
-                            {adjustmentControls.map(c => (
-                                <div key={c.name}>
-                                    <label className="block text-xs font-medium text-gray-400 mb-1">{c.label}</label>
-                                    <input name={c.name} type="range" min={c.min} max={c.max} step={c.step || 1} value={adjustments[c.name as keyof ManualAdjustments]} onChange={handleAdjustmentChange} className="w-full custom-range" />
+                         <div className="space-y-3">
+                            <div className="flex justify-between items-center mb-1">
+                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Manual Adjustments</h3>
+                                <div className="flex items-center gap-2">
+                                    <button 
+                                        onClick={handleUndo} 
+                                        disabled={currentAdjustmentHistoryIndex <= 0}
+                                        className="p-1 rounded-full text-gray-300 hover:bg-gray-700 disabled:text-gray-600 disabled:cursor-not-allowed transition-colors"
+                                        aria-label="Undo Adjustment"
+                                    >
+                                        <UndoIcon />
+                                    </button>
+                                    <button 
+                                        onClick={handleRedo} 
+                                        disabled={currentAdjustmentHistoryIndex >= adjustmentHistory.length - 1}
+                                        className="p-1 rounded-full text-gray-300 hover:bg-gray-700 disabled:text-gray-600 disabled:cursor-not-allowed transition-colors"
+                                        aria-label="Redo Adjustment"
+                                    >
+                                        <RedoIcon />
+                                    </button>
                                 </div>
-                            ))}
+                            </div>
+                            <div 
+                                ref={adjustmentsRef} 
+                                onMouseUp={handleAdjustmentEnd}
+                                onTouchEnd={handleAdjustmentEnd}
+                                className="grid grid-cols-2 gap-x-4 gap-y-3 max-h-48 overflow-y-auto"
+                            >
+                                {adjustmentControls.map(c => (
+                                    <div key={c.name}>
+                                        <label className="block text-xs font-medium text-gray-400 mb-1">{c.label}</label>
+                                        <input name={c.name} type="range" min={c.min} max={c.max} step={c.step || 1} value={adjustments[c.name as keyof ManualAdjustments]} onChange={handleAdjustmentChange} className="w-full custom-range" />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     )}
                      {activeTool === 'extend' && (
