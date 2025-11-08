@@ -6,6 +6,7 @@ import Gallery from './components/Gallery';
 import BackgroundRemover from './components/BackgroundRemover';
 import { ImageEnhancerState, PortraitStudioState, FilterGalleryState, BackgroundRemoverState } from './types';
 import { dataUrlToFile } from './services/geminiService';
+import Logo from './components/Logo';
 
 type AppMode = 'image' | 'portrait' | 'background' | 'filter' | 'gallery';
 
@@ -117,8 +118,12 @@ const App: React.FC = () => {
 
     return (
         <div className="max-w-lg mx-auto h-[100dvh] bg-[var(--bg-primary)] flex flex-col shadow-2xl shadow-black overflow-hidden">
-            <header className="p-4 flex items-center border-b border-[var(--border-color)] text-[var(--text-primary)] flex-shrink-0">
-                <h1 className="text-lg font-bold tracking-wide">{currentTool?.label}</h1>
+            <header className="p-4 flex items-center gap-3 border-b border-[var(--border-color)] text-[var(--text-primary)] flex-shrink-0">
+                <Logo />
+                <div>
+                    <h1 className="text-base font-bold tracking-wide leading-tight">Lumina</h1>
+                    <p className="text-xs text-gray-400 leading-tight">{currentTool?.label}</p>
+                </div>
             </header>
             
             <main className="flex-1 overflow-y-auto bg-[var(--bg-primary)]">
