@@ -15,7 +15,6 @@ export const fileToBase64 = (file: File): Promise<string> => {
 };
 
 export const enhanceImage = async (prompt: string, imageBase64: string, mimeType: string): Promise<string> => {
-    if (!process.env.API_KEY) throw new Error("API key not found");
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
     const response: GenerateContentResponse = await ai.models.generateContent({
@@ -65,7 +64,6 @@ export const enhanceImage = async (prompt: string, imageBase64: string, mimeType
 };
 
 export const getPromptSuggestions = async (imageBase64: string, mimeType: string): Promise<string[]> => {
-    if (!process.env.API_KEY) throw new Error("API key not found");
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
     const metaPrompt = `Analyze this image and suggest 4 creative editing prompts for an AI image editor.

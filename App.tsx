@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageEnhancer, { defaultAdjustments } from './components/ImageEnhancer';
 import PortraitStudio from './components/PortraitStudio';
 import FilterGallery, { filters } from './components/FilterGallery';
@@ -28,6 +28,7 @@ const navItems: { id: AppMode; label: string; icon: React.FC }[] = [
 const App: React.FC = () => {
     const [mode, setMode] = useState<AppMode>('image');
     const [error, setError] = useState<string | null>(null);
+    const [apiKeySelected, setApiKeySelected] = useState(false);
     
     const [imageEnhancerState, setImageEnhancerState] = useState<ImageEnhancerState>({
         imageFile: null,
@@ -55,6 +56,32 @@ const App: React.FC = () => {
         imageFile: null,
         selectedFilter: filters[0],
     });
+
+    useEffect(() => {
+        const checkApiKey = async () => {
+            if (typeof window.aistudio !== 'undefined' && await window.aistudio.hasSelectedApiKey()) {
+                setApiKeySelected(true);
+            }
+        };
+        checkApiKey();
+    }, []);
+
+    const clearError = () => setError(null);
+
+    const handleSelectKey = async () => {
+        clearError();
+        if (typeof window.aistudio !== 'undefined') {
+            try {
+                await window.aistudio.openSelectKey();
+                setApiKeySelected(true);
+            } catch (e) {
+                console.error('Error opening API key selection:', e);
+                setError('Could not open the API key selection dialog.');
+            }
+        } else {
+            setError('API selection utility is not available.');
+        }
+    };
     
     const handleApiError = (e: unknown) => {
         let message = 'An unknown error occurred.';
@@ -64,13 +91,12 @@ const App: React.FC = () => {
                 message = "You've exceeded your API quota. Please check your plan and billing details.";
             } else if (message.includes('Requested entity was not found')) {
                 message = 'API Key not found or invalid. Please select a valid key.';
+                setApiKeySelected(false);
             }
         }
         setError(message);
         console.error(e);
     };
-
-    const clearError = () => setError(null);
 
     const handleSendToTool = async (targetMode: AppMode, imageDataUrl: string) => {
         clearError();
@@ -115,6 +141,28 @@ const App: React.FC = () => {
     };
 
     const currentTool = navItems.find(item => item.id === mode);
+
+    if (!apiKeySelected) {
+        return (
+            <div className="max-w-lg mx-auto h-[100dvh] bg-[var(--bg-primary)] flex flex-col justify-center items-center p-8 text-center">
+                <Logo />
+                <h1 className="text-2xl font-bold mt-4 text-white">Welcome to Lumina</h1>
+                <p className="text-gray-400 mt-2">To start creating, please select your Google AI API key.</p>
+                {error && (
+                    <div className="bg-[var(--error-bg)] border border-[var(--error-border)] text-red-400 px-4 py-3 rounded-lg my-4 w-full text-center" role="alert">
+                        <p><strong className="font-bold">Error: </strong>{error}</p>
+                    </div>
+                )}
+                <p className="text-xs text-gray-500 mt-4">
+                    This app uses generative models which may have associated billing costs. 
+                    For more information, see the <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noopener noreferrer" className="underline text-cyan-400 hover:text-cyan-300">billing documentation</a>.
+                </p>
+                <button onClick={handleSelectKey} className="mt-6 bg-cyan-500 text-gray-900 font-bold py-2.5 px-6 rounded-lg hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20">
+                    Select API Key
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-lg mx-auto h-[100dvh] bg-[var(--bg-primary)] flex flex-col shadow-2xl shadow-black overflow-hidden">
